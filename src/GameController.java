@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameController implements Runnable {
     boolean running = true;
@@ -8,13 +10,18 @@ public class GameController implements Runnable {
     double flatValue = 0.0;
     double multiplier = 1.0;
     Building pointExcavator;
+    Building pointBaker;
+    List<Building> buildingList = new ArrayList<Building>();
 
     GameBoard gameBoard;
 
     public GameController(){
         gameBoard = new GameBoard();
         //Buildings
-        pointExcavator = new Building("Point Excavator", new Points(250) , new Points(10));
+        addBuildingToList(pointExcavator = new Building("Point Excavator", new Points(250) , new Points(10)));
+        addBuildingToList(pointBaker = new Building("Point Baker", new Points(1000) , new Points(25)));
+        //Building Array
+
         //Buttons
         // +1 Points to total
         gameBoard.jClickerButton.addActionListener(new ActionListener() {
@@ -51,19 +58,8 @@ public class GameController implements Runnable {
                 updateText();
             }
         });
-        //Building : Point Excavator
-        gameBoard.jBuildingButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Add new building
-                if(totalPoints.compareTo(new Points(pointExcavator.getCost())) == 1 || totalPoints.compareTo(new Points(pointExcavator.getCost())) == 0){
-                    totalPoints.subtract(pointExcavator.getCost());
-                    pointExcavator.buyBuilding();
-                    gameBoard.jBuildingButton1.setText("Point Excavator : + 1" + " | Cost = " + pointExcavator.getCost() + " | Count = " + pointExcavator.getCount());
-                    flatValue += pointExcavator.getIncome();
-                }
-            }
-        });
+        addBuilding(pointExcavator);
+        addBuilding(pointBaker);
     }
 
     public void run(){
@@ -93,5 +89,28 @@ public class GameController implements Runnable {
     private void updateText(){
         gameBoard.jLabel1.setText("Points per second | " + pointsPerSecond.getValue() + " Flatvalue = " + flatValue + " Multiplier = " + multiplier);
         gameBoard.jLabel2.setText("Total Points | " + totalPoints.getValue());
+    }
+
+    private void addBuilding(Building building){
+        //Building : Point Excavator
+        String key = building.getName();
+        gameBoard.addBuildingButton(building);
+        gameBoard.getBuildingButton(key).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Add new building
+                if(totalPoints.compareTo(new Points(building.getCost())) >= 0){
+                    totalPoints.subtract(building.getCost());
+                    building.buyBuilding();
+                    gameBoard.getBuildingButton(key).setText(building.getName() + " | Points Per Second " + building.getIncome() + " | Cost = " + building.getCost() + " | Count = " + building.getCount());
+                    flatValue += building.getIncome();
+                }
+            }
+        });
+    }
+
+    private void addBuildingToList(Building building){
+        if(!buildingList.contains(building))
+        buildingList.add(building);
     }
 }

@@ -15,11 +15,18 @@ public class Building {
     }
 
     public double getIncome() {
+        if(count == 0){
+            return income.getValue();
+        }
         return income.getValue() * count;
     }
 
     public int getCount() {
         return count;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void buyBuilding(){

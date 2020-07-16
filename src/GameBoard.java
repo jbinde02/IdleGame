@@ -1,18 +1,25 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameBoard {
     JFrame frame;
-    JButton jClickerButton, jBuildingButton1, jBuildingButton2, jButton1, jButton2, jButton3;
+    JButton jClickerButton, jButton1, jButton2, jButton3;
+    Map<String, JButton> jButtonBuildingMap;
     JLabel jLabel1, jLabel2;
     JPanel buttonPanel, pointPanel, buildingPanel;
     GridBagConstraints c = new GridBagConstraints();
+    final int BUTTON_WIDTH = 200;
+    final int BUTTON_HEIGHT =30;
     public GameBoard(){
         frame = new JFrame("Idle Game");
-        frame.setSize(750, 500);
+        frame.setSize(1000, 500);
         frame.setLayout(new GridBagLayout());
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        jButtonBuildingMap = new HashMap<>();
 
         pointPanel = new JPanel();
         c.gridx = 0;
@@ -34,14 +41,6 @@ public class GameBoard {
         jClickerButton = new JButton("Click for Point");
         jClickerButton.setBounds(50, 60, 50, 50);
         buttonPanel.add(jClickerButton);
-
-        jBuildingButton1 = new JButton("Point Excavator : + 1");
-        jBuildingButton1.setBounds(0, 0, 200 , 30);
-        buildingPanel.add(jBuildingButton1);
-
-        jBuildingButton2 = new JButton("Point Baker : + 1");
-        jBuildingButton2.setBounds(0, 0, 200 , 30);
-        buildingPanel.add(jBuildingButton2);
 
         jButton1 = new JButton("Points per second : + 1");
         jButton1.setBounds(50, 100, 200 , 30);
@@ -65,4 +64,16 @@ public class GameBoard {
 
     }
 
+    public void addBuildingButton(Building building){
+        JButton newButton = new JButton();
+        newButton.setName(building.getName());
+        newButton.setText(newButton.getName() + " | Points Per Second " + building.getIncome() + " | Cost = " + building.getCost() + " | Count = " + building.getCount());
+        newButton.setBounds(0, 180, BUTTON_WIDTH , BUTTON_HEIGHT);
+        buildingPanel.add(newButton);
+        jButtonBuildingMap.put(newButton.getName(), newButton);
+    }
+
+    public JButton getBuildingButton(String buildingName) {
+        return jButtonBuildingMap.get(buildingName);
+    }
 }
