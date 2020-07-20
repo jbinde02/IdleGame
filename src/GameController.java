@@ -1,29 +1,36 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GameController implements Runnable {
     boolean running = true;
+    boolean buildingUpdated = false;
     Points pointsPerSecond = new Points(0);
     Points totalPoints = new Points(0);
     double flatValue = 0.0;
     double multiplier = 1.0;
-    Building pointExcavator;
-    Building pointBaker;
+    Building pointExcavator, pointBaker;
     List<Building> buildingList = new ArrayList<Building>();
-
+    Iterator<Building> iterator;
     GameBoard gameBoard;
+
 
     public GameController(){
         gameBoard = new GameBoard();
         //Buildings
-        addBuildingToList(pointExcavator = new Building("Point Excavator", new Points(250) , new Points(10)));
-        addBuildingToList(pointBaker = new Building("Point Baker", new Points(1000) , new Points(25)));
-        //Building Array
+        pointExcavator = new Building("Point Excavator", new Points(250) , new Points(10), 10);
+        pointBaker = new Building("Point Baker", new Points(1000) , new Points(25), 5);
+        addBuildingToList(pointExcavator);
+        addBuildingToList(pointBaker);
 
-        //Buttons
-        // +1 Points to total
+        iterator = buildingList.iterator();
+        while(iterator.hasNext()){
+            addBuilding(iterator.next());
+        }
+        //Upgrade and Clicker Buttons
+        // +1 Points to total or Clicker button
         gameBoard.jClickerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,7 +42,6 @@ public class GameController implements Runnable {
         gameBoard.jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // pointsPerSecond.add(1.0);
                 flatValue += 1;
                 updateText();
             }
@@ -44,7 +50,6 @@ public class GameController implements Runnable {
         gameBoard.jButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // pointsPerSecond.add(pointsPerSecond.getValue() * 2.0);
                 multiplier += 1;
                 updateText();
             }
@@ -53,13 +58,10 @@ public class GameController implements Runnable {
         gameBoard.jButton3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              //  pointsPerSecond.add(pointsPerSecond.getValue() * 1.10);
                 multiplier += .10;
                 updateText();
             }
         });
-        addBuilding(pointExcavator);
-        addBuilding(pointBaker);
     }
 
     public void run(){
@@ -75,42 +77,43 @@ public class GameController implements Runnable {
     }
 
     private void update(){
-        //Round to three decimal places
-        double pps = flatValue;
-        pps = pps * multiplier;
-        pps = Math.round(pps * 1000) / 1000;
-        pointsPerSecond.setValue(pps);
-        //Round to three decimal places
+        //Rounds to three decimal places
+        pointsPerSecond.setValue(Math.round(flatValue * multiplier * 1000) / 1000);
+        //Rounds to three decimal places
         totalPoints.add(pointsPerSecond);
         totalPoints.setValue(Math.round(totalPoints.getValue() * 1000) / 1000);
         updateText();
     }
 
     private void updateText(){
-        gameBoard.jLabel1.setText("Points per second | " + pointsPerSecond.getValue() + " Flatvalue = " + flatValue + " Multiplier = " + multiplier);
+        gameBoard.jLabel1.setText("Points per second | " + pointsPerSecond.getValue() + " Flat Value = " + flatValue + " Multiplier = " + multiplier);
         gameBoard.jLabel2.setText("Total Points | " + totalPoints.getValue());
     }
 
     private void addBuilding(Building building){
-        //Building : Point Excavator
+        //Calls the gameboard to create a new jbutton and place it it a map with the key being the buildings name as well as putting it in the building panel.
         String key = building.getName();
         gameBoard.addBuildingButton(building);
+        //Add action to the new building button
         gameBoard.getBuildingButton(key).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add new building
-                if(totalPoints.compareTo(new Points(building.getCost())) >= 0){
+                // Add new building button
+                if(building.getCount()<building.getMax() && totalPoints.compareTo(new Points(building.getCost())) >= 0){
                     totalPoints.subtract(building.getCost());
                     building.buyBuilding();
-                    gameBoard.getBuildingButton(key).setText(building.getName() + " | Points Per Second " + building.getIncome() + " | Cost = " + building.getCost() + " | Count = " + building.getCount());
-                    flatValue += building.getIncome();
+                    gameBoard.getBuildingButton(key).setText(building.getName() + " | Points Per Second " + building.getChangeInIncome() + " | Cost = " + building.getCost() + " | Count = " + building.getCount());
+                    flatValue += building.getChangeInIncome();
                 }
             }
         });
     }
 
     private void addBuildingToList(Building building){
-        if(!buildingList.contains(building))
-        buildingList.add(building);
+        if(!buildingList.contains(building)){
+            buildingList.add(building);
+        }else{
+            System.out.println("Building already added in buildingList.");
+        }
     }
 }

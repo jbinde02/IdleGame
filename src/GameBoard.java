@@ -67,7 +67,7 @@ public class GameBoard {
     public void addBuildingButton(Building building){
         JButton newButton = new JButton();
         newButton.setName(building.getName());
-        newButton.setText(newButton.getName() + " | Points Per Second " + building.getIncome() + " | Cost = " + building.getCost() + " | Count = " + building.getCount());
+        newButton.setText(newButton.getName() + " | Points Per Second " + building.getChangeInIncome() + " | Cost = " + building.getCost() + " | Count = " + building.getCount());
         newButton.setBounds(0, 180, BUTTON_WIDTH , BUTTON_HEIGHT);
         buildingPanel.add(newButton);
         jButtonBuildingMap.put(newButton.getName(), newButton);
