@@ -3,16 +3,16 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameBoard {
-    JFrame frame;
+class GameBoard {
+    private JFrame frame;
     JButton jClickerButton, jButton1, jButton2, jButton3;
-    Map<String, JButton> jButtonBuildingMap;
+    private Map<String, JButton> jButtonBuildingMap;
     JLabel jLabel1, jLabel2;
-    JPanel buttonPanel, pointPanel, buildingPanel;
+    private JPanel buttonPanel, pointPanel, buildingPanel;
     GridBagConstraints c = new GridBagConstraints();
-    final int BUTTON_WIDTH = 200;
-    final int BUTTON_HEIGHT =30;
-    public GameBoard(){
+    private final int BUTTON_WIDTH = 200;
+    private final int BUTTON_HEIGHT =30;
+    GameBoard(){
         frame = new JFrame("Idle Game");
         frame.setSize(1000, 500);
         frame.setLayout(new GridBagLayout());
@@ -64,16 +64,16 @@ public class GameBoard {
 
     }
 
-    public void addBuildingButton(Building building){
+    void addBuildingButton(Building building){
         JButton newButton = new JButton();
         newButton.setName(building.getName());
         newButton.setText(newButton.getName() + " | Points Per Second " + building.getChangeInIncome() + " | Cost = " + building.getCost() + " | Count = " + building.getCount());
-        newButton.setBounds(0, 180, BUTTON_WIDTH , BUTTON_HEIGHT);
+        newButton.setBounds(0, 0, BUTTON_WIDTH , BUTTON_HEIGHT);
         buildingPanel.add(newButton);
         jButtonBuildingMap.put(newButton.getName(), newButton);
     }
 
-    public JButton getBuildingButton(String buildingName) {
+    JButton getBuildingButton(String buildingName) {
         return jButtonBuildingMap.get(buildingName);
     }
 }

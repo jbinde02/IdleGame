@@ -1,7 +1,7 @@
 public class Points {
     private double value;
 
-    public Points(double value){
+    Points(double value){
         this.value = value;
     }
 
@@ -9,19 +9,19 @@ public class Points {
         this.value = 0;
     }
 
-    public double getValue(){
+    double getValue(){
         return this.value;
     }
 
-    public void setValue(double value){
+    void setValue(double value){
         this.value = value;
     }
 
-    public void add(Points modifier){
+    void add(Points modifier){
         this.value = this.value + modifier.value;
     }
 
-    public void add(Double modifier){
+    void add(Double modifier){
         this.value = this.value + modifier;
     }
 
@@ -29,7 +29,7 @@ public class Points {
         this.value = this.value - modifier.value;
     }
 
-    public void subtract(Double modifier){
+    void subtract(Double modifier){
         this.value = this.value - modifier;
     }
 
@@ -44,7 +44,7 @@ public class Points {
         }
     }
 
-    public int compareTo(Points comparedTo){
+    int compareTo(Points comparedTo){
         double difference = this.value - comparedTo.value;
         if(difference == 0){
             return 0;

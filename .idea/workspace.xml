@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1eb113e6-e8c4-429e-baf8-975b37586583" name="Default Changelist" comment="">
+    <list default="true" id="1eb113e6-e8c4-429e-baf8-975b37586583" name="Default Changelist" comment="Added new building">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Idle Game/Building.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Idle Game/Building.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Idle Game/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Idle Game/GameController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Idle Game/GameController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Idle Game/GameController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Idle Game/GameController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Idle Game/GameController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Idle Game/GameController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Idle Game/GameController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Idle Game/GameController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Idle Game/GameController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Idle Game/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Idle Game/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Building.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Points.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Points.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +37,7 @@
   <component name="ProjectId" id="1e1fGdiITiGDXPbAdzomFXJTnqE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JBFileParser" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -105,5 +99,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added new building" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new building" />
   </component>
 </project>

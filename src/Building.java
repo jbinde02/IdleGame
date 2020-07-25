@@ -1,45 +1,45 @@
-public class Building {
-    Points cost;
-    Points income;
-    String name;
-    int count;
-    int max;
-    public Building(String name, Points cost, Points income, int max){
+class Building {
+    private String name;
+    private Points cost;
+    private Points income;
+    private int count;
+    private int maxCount;
+    Building(String name, Points cost, Points income, int maxCount){
         this.name = name;
         this.cost = cost;
         this.income = income;
         this.count = 0;
-        this.max = max;
+        this.maxCount = maxCount;
     }
 
-    public double getCost() {
+    double getCost() {
         return cost.getValue();
     }
 
-    public double getTotalIncome() {
+    double getTotalIncome() {
         if(count == 0){
             return income.getValue();
         }
         return income.getValue() * count;
     }
 
-    public double getChangeInIncome(){
+    double getChangeInIncome(){
         return income.getValue();
     }
 
-    public int getCount() {
+    int getCount() {
         return count;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getMax() {
-        return max;
+    int getMaxCount() {
+        return maxCount;
     }
 
-    public void buyBuilding(){
+    void buyBuilding(){
         count++;
     }
 
