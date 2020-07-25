@@ -3,6 +3,14 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class represents the visuals for the game. It will create the frame, panels, buttons, and text fields necessary.
+ * There is a method that creates buttons using buildings and adds them to a map which allows for easy creation of new
+ * buildings. This class uses the grid bag layout for arranging the panels and box layout for slapping the buttons in.
+ *
+ * @author Jacob Binder
+ */
+
 class GameBoard {
     private JFrame frame;
     JButton jClickerButton, jButton1, jButton2, jButton3;

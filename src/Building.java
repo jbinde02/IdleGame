@@ -1,3 +1,10 @@
+/**
+ * This class represents a building which is a object that can be bought for points used in the controller class.
+ * A building consist of a name, cost, income, count, and maximum count.
+ *
+ * @author Jacob Binder
+ */
+
 class Building {
     private String name;
     private Points cost;

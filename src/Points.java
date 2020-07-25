@@ -1,3 +1,10 @@
+/**
+ * This class represents Points which are just a double value. I kind of got a bit carried away with using Points
+ * instead of just doubles but here we are.
+ *
+ * @author Jacob Binder
+ */
+
 public class Points {
     private double value;
 

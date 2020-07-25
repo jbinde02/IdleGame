@@ -1,6 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the "controller" or brains of the game. This class wil create a gameBoard object for the visuals and buttons.
+ * There are values for the total points and points per second represented by the Points objects. In this class there
+ * are also the flatvalue and multiplier values which when combined give the points per second. Finally there are objects
+ * called Buildings which are things that can be bought with your totalpoints to increase your points per second.
+ * Buildings are added to a arrayList for safekeepings. This class handles the functions of the buttons added through
+ * the gameBoard object. There is a clicker button and free
+ * upgrade buttons that entirely negate the point of the buildings but whatever.
+ *
+ * @author Jacob Binder
+ */
+
 public class GameController implements Runnable {
     private Points pointsPerSecond = new Points(0);
     private Points totalPoints = new Points(0);
